@@ -17,10 +17,8 @@ public class AccountWithJpa {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("accountJPA");
         EntityManager em = emf.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
-
         try {
             transaction.begin();
-
             AccountEntity accountEntity = new AccountEntity();
             accountEntity.setAccountNumber(UUID.randomUUID().toString());
             accountEntity.setName(account.getName());
@@ -45,15 +43,10 @@ public class AccountWithJpa {
 
             return accountEntity.getAccountNumber();
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
+            System.out.println("Exception  Occurred " +e);
             }
-            e.printStackTrace();
             return null;
-        } finally {
-            em.close();
-            emf.close();
         }
     }
-    }
+
 

@@ -2,7 +2,9 @@ package com.neoteric.fullstackdemo.controller;
 
 import com.neoteric.fullstackdemo.model.Account;
 import com.neoteric.fullstackdemo.service.AccountService;
+import com.neoteric.fullstackdemo.service.AccountServiceWithSpringJpa;
 import com.neoteric.fullstackdemo.service.AccountWithJpa;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.HttpHandler;
 import org.springframework.web.bind.annotation.*;
@@ -51,4 +53,18 @@ public class AccountController {
         account.setAccountNumber(accountnumber);
         return account;
     }
+
+    @Autowired
+    AccountServiceWithSpringJpa accountServiceTest;
+
+    @GetMapping(value = "/api/searchAccount/Datajpa",
+            consumes = "application/json",
+            produces = "application/json")
+    public Account getAccountNumberByJpa(@RequestHeader ("accountinput")
+                                    String accountNumber){
+        return accountServiceTest.searchAccountByManagedJpa(accountNumber);
+    }
+
+
+
 }
