@@ -8,6 +8,7 @@ import com.neoteric.fullstackdemo.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.PublicKey;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -17,6 +18,20 @@ public class AccountServiceWithSpringJpa {
 
     @Autowired
     AccountRepositary accountRepositary;
+
+    public List<AccountEntity> accountLessThanBalance(double balance){
+      return accountRepositary.findByBalanceLessThan(balance);
+    }
+
+    public List<AccountEntity> accountGreaterThanBalance(double balance){
+        return accountRepositary.findByBalanceGreaterThan(balance);
+    }
+
+
+    public List<AccountEntity> accountBetweenBalance(double lowerRange, double upperRange) {
+        return accountRepositary.findByBalanceBetween(lowerRange, upperRange);
+    }
+
     public Account searchAccountByManagedJpa(String accountNumber){
         Account account=null;
         Optional<AccountEntity> optionalAccountEntity =accountRepositary.findById(accountNumber);
