@@ -44,8 +44,19 @@ public class AccountJpaController {
     @GetMapping(value = "/api/searchAccount/balanceRange",
             consumes = "application/json",
             produces = "application/json")
-    public List<AccountEntity> searchByBalanceRange(@RequestHeader("lowerRange") double lowerBound, @RequestHeader("upperRange") double upperBound){
-        return accountServiceWithSpringJpa.accountBetweenBalance(lowerBound, upperBound);
+    public List<AccountEntity> searchByBalanceRange(@RequestHeader("lowerRangeinput") double lowerRange, @RequestHeader("upperRangeinput") double upperRange){
+        return accountServiceWithSpringJpa.accountBetweenBalance(lowerRange, upperRange);
+    }
+
+
+    @GetMapping(value = "/api/searchAccount/balanceNull")
+    public List<AccountEntity> getAccountsWithBalanceNull(){
+        return accountServiceWithSpringJpa.findAccountsWithNullBalance();
+    }
+
+    @GetMapping(value = "/api/searchAccount/balanceNotNull")
+    public List<AccountEntity> getAccountsWithBalanceNotNull(){
+        return accountServiceWithSpringJpa.findAccountsWithBalanceNotNull();
     }
 
 }

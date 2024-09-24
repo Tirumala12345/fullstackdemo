@@ -32,6 +32,14 @@ public class AccountServiceWithSpringJpa {
         return accountRepositary.findByBalanceBetween(lowerRange, upperRange);
     }
 
+    public List<AccountEntity> findAccountsWithNullBalance(){
+        return accountRepositary.findByBalanceIsNull();
+    }
+
+    public List<AccountEntity> findAccountsWithBalanceNotNull(){
+        return accountRepositary.findByBalanceIsNotNull();
+    }
+
     public Account searchAccountByManagedJpa(String accountNumber){
         Account account=null;
         Optional<AccountEntity> optionalAccountEntity =accountRepositary.findById(accountNumber);
