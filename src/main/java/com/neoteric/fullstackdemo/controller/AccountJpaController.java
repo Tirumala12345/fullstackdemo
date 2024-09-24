@@ -26,7 +26,6 @@ public class AccountJpaController {
         return accountServiceWithSpringJpa.searchAccountByAccountNumberAndPan(accountNumber, pan);
     }
 
-
     @GetMapping(value = "/api/searchAccount/balance",
             consumes = "application/json",
             produces = "application/json")
@@ -57,6 +56,11 @@ public class AccountJpaController {
     @GetMapping(value = "/api/searchAccount/balanceNotNull")
     public List<AccountEntity> getAccountsWithBalanceNotNull(){
         return accountServiceWithSpringJpa.findAccountsWithBalanceNotNull();
+    }
+
+    @GetMapping(value = "/api/searchAccount/distnctBalance")
+    public List<AccountEntity> getDistinctAccountsByBalance(@RequestHeader("balanceinput") double balance){
+        return accountServiceWithSpringJpa.findDistinctAccountsByBalance(balance);
     }
 
 }

@@ -40,6 +40,11 @@ public class AccountServiceWithSpringJpa {
         return accountRepositary.findByBalanceIsNotNull();
     }
 
+    public List<AccountEntity> findDistinctAccountsByBalance(double balance){
+        return accountRepositary.findByDistinctByBalance(balance);
+    }
+
+
     public Account searchAccountByManagedJpa(String accountNumber){
         Account account=null;
         Optional<AccountEntity> optionalAccountEntity =accountRepositary.findById(accountNumber);
@@ -98,6 +103,6 @@ public class AccountServiceWithSpringJpa {
         }
         return account;
     }
-
     }
+
 
