@@ -3,6 +3,8 @@ package com.neoteric.fullstackdemo.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Builder
 @Data
 public class Account {
@@ -12,6 +14,6 @@ public class Account {
     private String pan;
     private  String mobile;
     private double balance;
-    private Address address;
+    private List<Address> address;
 
 }

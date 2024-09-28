@@ -29,7 +29,9 @@ public class AccountEntity {
 
     @Column(name = "balance", nullable = false)
     private double balance;
-//parent referance object in child,push the data from parent to child at the same time
+
+
+    //parent referance object in child,push the data from parent to child at the same time
     @OneToMany(mappedBy = "accountEntity", cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     public List<AccountAddressEntity> accountAddressEntityList;
 }

@@ -28,7 +28,7 @@ public class AtmService {
 
         try {
             Statement stmt = connection.createStatement();
-            String checkAccountQuery = "SELECT * FROM bank.account WHERE accountnumber = '" + account.getAccountNumber() + "'";
+            String checkAccountQuery = "SELECT * FROM bank.account WHERE accountNumber = '" + account.getAccountNumber() + "'";
             ResultSet rs = stmt.executeQuery(checkAccountQuery);
             if (!rs.next()) {
                 throw new AccountNotFoundException("Account Number " + account.getAccountNumber() + " is not found");
@@ -44,7 +44,7 @@ public class AtmService {
             // Convert java.util.Date to java.sql.Timestamp
             Timestamp expiryTimestamp = new Timestamp(expiry.getTime());
 
-            String insertAtmQuery = "INSERT INTO bank.atm (cardnumber, pin, cvv, expiry, accountnumber) VALUES (?, ?, ?, ?, ?)";
+            String insertAtmQuery = "INSERT INTO bank.atm (cardnumber, pin, cvv, expiry, accountNumber) VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement pstmt = connection.prepareStatement(insertAtmQuery)) {
                 pstmt.setString(1, cardNumber);

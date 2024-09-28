@@ -59,31 +59,31 @@ public class  AccountService {
     }
 
 
-    public String oneToManyUsingHibernateFromUI(Account account){
-        SessionFactory sessionFactory= HibernateUtils.getSessionFactory();
-        Session session= sessionFactory.openSession();
-        Transaction transaction= session.beginTransaction();
-
-        AccountEntity accountEntity=new AccountEntity();
-        accountEntity.setAccountNumber(UUID.randomUUID().toString());
-        accountEntity.setName(account.getName());
-        accountEntity.setPan(account.getPan());
-        accountEntity.setMobile(account.getMobile());
-        accountEntity.setBalance(account.getBalance());
-        List<AccountAddressEntity> accountAddressEntityList=new ArrayList<>();
-        AccountAddressEntity accountAddressEntity=new AccountAddressEntity();
-        accountAddressEntity.setAdd1(account.getAddress().getAdd1());
-        accountAddressEntity.setAdd2(account.getAddress().getAdd2());
-        accountAddressEntity.setState(account.getAddress().getState());
-        accountAddressEntity.setPincode(account.getAddress().getPincode());
-        accountAddressEntity.setStatuscode(1);
-        accountAddressEntity.setAccountEntity(accountEntity);
-        accountAddressEntityList.add(accountAddressEntity);
-        accountEntity.setAccountAddressEntityList(accountAddressEntityList);
-        session.persist(accountEntity);
-        transaction.commit();
-        return accountEntity.getAccountNumber();
-    }
+//    public String oneToManyUsingHibernateFromUI(Account account){
+//        SessionFactory sessionFactory= HibernateUtils.getSessionFactory();
+//        Session session= sessionFactory.openSession();
+//        Transaction transaction= session.beginTransaction();
+//
+//        AccountEntity accountEntity=new AccountEntity();
+//        accountEntity.setAccountNumber(UUID.randomUUID().toString());
+//        accountEntity.setName(account.getName());
+//        accountEntity.setPan(account.getPan());
+//        accountEntity.setMobile(account.getMobile());
+//        accountEntity.setBalance(account.getBalance());
+//        List<AccountAddressEntity> accountAddressEntityList=new ArrayList<>();
+//        AccountAddressEntity accountAddressEntity=new AccountAddressEntity();
+//        accountAddressEntity.setAdd1(account.getAddress().getAdd1());
+//        accountAddressEntity.setAdd2(account.getAddress().getAdd2());
+//        accountAddressEntity.setState(account.getAddress().getState());
+//        accountAddressEntity.setPincode(account.getAddress().getPincode());
+//        accountAddressEntity.setStatuscode(1);
+//        accountAddressEntity.setAccountEntity(accountEntity);
+//        accountAddressEntityList.add(accountAddressEntity);
+//        accountEntity.setAccountAddressEntityList(accountAddressEntityList);
+//        session.persist(accountEntity);
+//        transaction.commit();
+//        return accountEntity.getAccountNumber();
+//    }
 
 
     public List<Account> searchAccount(String accountNumber) {

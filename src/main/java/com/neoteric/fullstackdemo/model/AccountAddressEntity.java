@@ -34,6 +34,9 @@ public class AccountAddressEntity {
     @Column(name = "statuscode")
     private Integer statuscode;
 
+    @Column(name = "accountnumber",insertable = false,updatable = false)
+    private String accountNumber;
+
     @ManyToOne
     @JoinColumn(name = "accountnumber", referencedColumnName = "accountnumber")
     private AccountEntity accountEntity;

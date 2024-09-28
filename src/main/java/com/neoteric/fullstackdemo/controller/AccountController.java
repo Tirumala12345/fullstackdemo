@@ -25,45 +25,45 @@ public class AccountController {
         return account;
     }
 
-    @PostMapping(value = "/createAccount/usingUI",
-            produces = "application/json",
-            consumes = "application/json")
-    public Account createaccountoneToManyusingUI(@RequestBody Account account){
-        AccountService accountService = new AccountService();
-        String accountnumber =accountService.oneToManyUsingHibernateFromUI(account);
-        account.setAccountNumber(accountnumber);
-        return account;
-    }
+//    @PostMapping(value = "/createAccount/usingUI",
+//            produces = "application/json",
+//            consumes = "application/json")
+//    public Account createaccountoneToManyusingUI(@RequestBody Account account){
+//        AccountService accountService = new AccountService();
+//        String accountNumber =accountService.oneToManyUsingHibernateFromUI(account);
+//        account.setAccountNumber(accountNumber);
+//        return account;
+//    }
 
 
     @GetMapping(value = "/loansearch",
             produces = "application/json")
-    public List<Account> getAccountNumber(@RequestParam ("accountnumber")
-                                          String accountnumber)  {
+    public List<Account> getAccountNumber(@RequestParam ("accountNumber")
+                                          String accountNumber)  {
         AccountService accountService=new AccountService();
-        return accountService.searchAccount(accountnumber);
+        return accountService.searchAccount(accountNumber);
     }
 
-    @PostMapping(value = "/accountJpa",
-            produces = "application/json",
-            consumes = "application/json")
-    public Account createAccountJPA(@RequestBody Account account){
-        AccountWithJpa accountWithJpa=new AccountWithJpa();
-        String accountnumber= accountWithJpa.accountJpa(account);
-        account.setAccountNumber(accountnumber);
-        return account;
-    }
+//    @PostMapping(value = "/accountJpa",
+//            produces = "application/json",
+//            consumes = "application/json")
+//    public Account createAccountJPA(@RequestBody Account account){
+//        AccountWithJpa accountWithJpa=new AccountWithJpa();
+//        String accountnumber= accountWithJpa.accountJpa(account);
+//        account.setAccountNumber(accountnumber);
+//        return account;
+//    }
 
     @Autowired
     AccountServiceWithSpringJpa accountServiceTest;
 
-    @GetMapping(value = "/api/searchAccount/Datajpa",
-            consumes = "application/json",
-            produces = "application/json")
-    public Account getAccountNumberByJpa(@RequestHeader ("accountinput")
-                                    String accountNumber){
-        return accountServiceTest.searchAccountByManagedJpa(accountNumber);
-    }
+//    @GetMapping(value = "/api/searchAccount/Datajpa",
+//            consumes = "application/json",
+//            produces = "application/json")
+//    public Account getAccountNumberByJpa(@RequestHeader ("accountinput")
+//                                    String accountNumber){
+//        return accountServiceTest.searchAccountByManagedJpa(accountNumber);
+//    }
 
 
 

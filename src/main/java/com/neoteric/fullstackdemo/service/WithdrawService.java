@@ -18,7 +18,7 @@ public class WithdrawService {
         this.connection = DBConnection.getConnection();
     }
     public double getBalance(String accountNumber) throws Exception {
-        String query = "SELECT balance FROM account WHERE accountnumber = ?";
+        String query = "SELECT balance FROM account WHERE accountNumber = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, accountNumber);
             ResultSet rs = pstmt.executeQuery();
@@ -33,7 +33,7 @@ public class WithdrawService {
     }
 
     public void updateBalance(String accountNumber, double newBalance) throws Exception {
-        String updateQuery = "UPDATE account SET balance = ? WHERE accountnumber = ?";
+        String updateQuery = "UPDATE account SET balance = ? WHERE accountNumber = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(updateQuery)) {
             pstmt.setDouble(1, newBalance);
             pstmt.setString(2, accountNumber);
